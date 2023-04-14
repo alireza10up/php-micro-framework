@@ -1,0 +1,17 @@
+{
+    "name": "administrator/micro-framework",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "LOTOBM",
+            "email": "toolsalireza10up@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
