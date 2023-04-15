@@ -2,10 +2,6 @@
 
 # autoload
 
-include 'vendor/autoload.php';
+include 'bootstrap/init.php';
 
-# front controller
-
-echo $_SERVER['REQUEST_URI'];
-
-new App\Core\Request();
+print_r($_ENV);
