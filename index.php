@@ -4,4 +4,8 @@
 
 include 'bootstrap/init.php';
 
-print_r($_ENV);
+use App\Utilities\Assets;
+use App\Utilities\Url;
+
+// echo Assets::CSS('style.js'); 
+echo Url::current();

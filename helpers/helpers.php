@@ -7,4 +7,20 @@ function dd(mixed $arg)
     echo '</pre>';
 }
 
+function site_url(string $route): string
+{
+    return $_ENV['BASE_URL'] . $route;
+}
+
+function assets(string $route): string
+{
+    return site_url('assets/' . $route);
+}
+
+function random_element(array $arr): array
+{
+    shuffle($arr);
+    return array_pop($arr);
+}
+
 ?>
