@@ -7,11 +7,16 @@ use App\Utilities\Url;
 class StupidRouter
 {
 
-    private $routes = [
-        '/microFramework/colors/blue' => 'colors/blue.php',
-        '/microFramework/colors/green' => 'colors/green.php',
-        '/microFramework/colors/red' => 'colors/red.php'
-    ];
+    private $routes;
+
+    public function __construct()
+    {
+        $this->routes = [
+            '/microFramework/colors/blue' => 'colors/blue.php',
+            '/microFramework/colors/green' => 'colors/green.php',
+            '/microFramework/colors/red' => 'colors/red.php',
+        ];
+    }
 
     public function run()
     {

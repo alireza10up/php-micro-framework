@@ -4,6 +4,7 @@
 
 include 'bootstrap/init.php';
 
+use App\Core\Request;
 use App\Core\StupidRouter;
 use App\Utilities\Assets;
 use App\Utilities\Url;
@@ -13,17 +14,17 @@ echo Assets::CSS('style.js');
 echo '<hr>';
 echo Url::current();
 echo '<hr>';
+echo Url::current_route();
+echo '<hr>';
+
+// request
+
+$request = new Request();
+dd($request);
+
+dd($request->name);
 
 // router
-
-// $route = Url::current_route();
-
-// include match ($route) {
-//     "/microFramework/colors/blue" => View::get('colors/blue.php'),
-//     "/microFramework/colors/green" => View::get('colors/green.php'),
-//     "/microFramework/colors/red" => View::get('colors/red.php'),
-//     default => View::get('leaderboard.php'),
-// };
 
 $router = new StupidRouter();
 $router->run();

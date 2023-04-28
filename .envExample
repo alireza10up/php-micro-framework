@@ -1,0 +1,8 @@
+BASE_URL='http://localhost/microFramework/'
+
+# db config
+
+DB_NAME=''
+DB_USER=''
+DB_PASS=''
+DB_HOST=''
