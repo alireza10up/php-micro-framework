@@ -1,10 +1,10 @@
 <?php
-// const default
+# const default
 define('BASE_PATH', dirname(__DIR__));
-// autoload composer
+# autoload composer
 include BASE_PATH . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-// env var bootstrap
+# env var bootstrap
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
 $dotenv->safeLoad();
-// hepers func
+# helpers func
 include BASE_PATH . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'helpers.php';
