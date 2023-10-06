@@ -1,4 +1,5 @@
 BASE_URL='http://localhost/microFramework/'
+DEBUG=1
 
 # db config
 

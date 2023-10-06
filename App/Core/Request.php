@@ -8,6 +8,7 @@ class Request
     private $method;
     private $agent;
     private $ip;
+
     public function __construct()
     {
         $this->params = $_REQUEST;
@@ -15,6 +16,12 @@ class Request
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->ip = $_SERVER['REMOTE_ADDR'];
     }
+
+    public function __get($name)
+    {
+        return $this->params[$name] ?? null;
+    }
+
     public function params()
     {
         return $this->params();
@@ -24,21 +31,23 @@ class Request
     {
         return $this->method;
     }
+
     public function agent()
     {
         return $this->agent;
     }
+
     public function ip()
     {
         return $this->ip;
     }
 
-    public function input($key)
+    public function input($key, $default = null)
     {
-        return $this->params[$key] ?? null;
+        return $this->params[$key] ?? $default;
     }
 
-    public function has($key)
+    public function has($key): bool
     {
         return isset($this->params[$key]);
     }
@@ -47,10 +56,5 @@ class Request
     {
         header('location:' . site_url($route));
         die();
-    }
-
-    public function __get($key)
-    {
-        return $this->params[$key] ?? null;
     }
 }
