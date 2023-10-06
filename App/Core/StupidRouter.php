@@ -12,6 +12,7 @@ class StupidRouter
     public function __construct()
     {
         $this->routes = [
+            '/' => 'colors/blue.php',
             '/microFramework/colors/blue' => 'colors/blue.php',
             '/microFramework/colors/green' => 'colors/green.php',
             '/microFramework/colors/red' => 'colors/red.php',
