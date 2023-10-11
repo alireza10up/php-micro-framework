@@ -2,19 +2,17 @@
 
 use App\Core\Routing\Route;
 
-Route::post('/get', function () {
+Route::post('/a', function () {
     return 'بهزاد مادر خراب';
 });
 
-Route::get('/get', function () {
+Route::get('/b', function () {
     return 'سلامتی ساقی';
 });
-Route::delete('/get', function () {
+Route::delete('/c', function () {
     return 'هرکس هس سلام';
 });
-Route::slam('/get', function () {
-    return 'هرکس هس سلام';
-});
+
 foreach(Route::routes() as $route) {
     dd($route['action']());
 };

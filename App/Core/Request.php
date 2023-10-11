@@ -14,7 +14,7 @@ class Request
     {
         $this->params = $_REQUEST;
         $this->agent = $_SERVER['HTTP_USER_AGENT'];
-        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->method = strtolower($_SERVER['REQUEST_METHOD']);
         $this->ip = $_SERVER['REMOTE_ADDR'];
         $this->uri = $_SERVER['REQUEST_URI'];
     }
@@ -29,7 +29,7 @@ class Request
         return $this->params();
     }
 
-    public function method()
+    public function method(): string
     {
         return $this->method;
     }
