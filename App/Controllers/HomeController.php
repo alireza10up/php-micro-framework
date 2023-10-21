@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
 class HomeController
 {
     public function index()
     {
-        echo "Hello World";
+        echo "I Run bro " . rand(100 , 1000);
     }
 }

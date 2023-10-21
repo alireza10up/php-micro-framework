@@ -7,12 +7,13 @@ Route::post('/a', function () {
 });
 
 Route::get('/b', function () {
-    return 'سلامتی ساقی';
+    echo 'سلامتی ساقی';
 });
+
 Route::delete('/c', function () {
     return 'هرکس هس سلام';
 });
 
-foreach(Route::routes() as $route) {
-    dd($route['action']());
-};
+Route::get('/d', [HomeController::class,'index']);
+Route::get('/e', 'HomeController@index');
+Route::get('/f', 'Home@index');
