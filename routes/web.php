@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\HomeController;
 use App\Core\Routing\Route;
 
 Route::get('/', function () {
@@ -9,8 +10,8 @@ Route::get('/', function () {
     ];
 
     return view('layouts.index', compact('userData'));
-});
+}, 'middleware');
 
-Route::get('/d', [HomeController::class, 'index']);
+Route::get('/d', [HomeController::class, 'index'], 'middleware');
 Route::get('/e', 'HomeController@index');
 Route::get('/f', 'Home@index');

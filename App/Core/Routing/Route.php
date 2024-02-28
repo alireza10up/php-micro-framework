@@ -10,13 +10,14 @@ class Route
     public static function __callStatic($method, $args)
     {
         if (!in_array($method, self::$verbs)) throw new \Exception('method not support !');
-        self::add($method, $args[0], $args[1]);
+        self::add($method, $args[0], $args[1], $args[2]);
     }
 
-    public static function add(array|string $methods, string $uri, $action): void
+    public static function add(array|string $methods, string $uri, $action, $middlewares): void
     {
         $methods = is_array($methods) ? $methods : [$methods];
-        self::$routes[] = $route = ['methods' => $methods, 'uri' => $uri, 'action' => $action];
+        $middlewares = is_array($middlewares) ? $middlewares : [$middlewares];
+        self::$routes[] = $route = ['methods' => $methods, 'uri' => $uri, 'action' => $action, 'middlewares' => $middlewares];
     }
 
     public static function routes(): array
