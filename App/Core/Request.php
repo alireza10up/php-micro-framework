@@ -4,11 +4,11 @@ namespace App\Core;
 
 class Request
 {
-    private $params;
-    private $method;
-    private $agent;
-    private $ip;
-    private $uri;
+    private array $params;
+    private string $method;
+    private mixed $agent;
+    private string $ip;
+    private string $uri;
 
     public function __construct()
     {

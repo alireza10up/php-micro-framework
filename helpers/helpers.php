@@ -17,10 +17,13 @@ function assets(string $route): string
     return site_url('assets/' . $route);
 }
 
-function random_element(array $arr): array
+function view($name, $data = []): void
 {
-    shuffle($arr);
-    return array_pop($arr);
+    extract($data);
+
+    $name = str_replace('.', '/', $name);
+
+    include_once BASE_PATH . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $name . '.php';
 }
 
 ?>
