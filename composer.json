@@ -1,5 +1,5 @@
 {
-    "name": "administrator/micro-framework",
+    "name": "alireza10up/micro-framework",
     "autoload": {
         "psr-4": {
             "App\\": "App/"
@@ -7,7 +7,7 @@
     },
     "authors": [
         {
-            "name": "LOTOBM",
+            "name": "alireza10up",
             "email": "toolsalireza10up@gmail.com"
         }
     ],
