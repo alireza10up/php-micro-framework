@@ -1,0 +1,32 @@
+<?php
+
+require 'vendor/autoload.php';
+
+$commands = [
+  'serve' => 'App\Console\Commands\Serve',
+];
+
+// check command exist
+if (!isset($argv[1]) || !array_key_exists($argv[1], $commands)) {
+  echo "\033[31m--------------------------------------------\033[0m" . PHP_EOL;
+  echo "\033[31m Invalid Command \033[0m" . PHP_EOL;
+  echo "\033[31m--------------------------------------------\033[0m" . PHP_EOL;
+
+  echo "\033[32m Command Available : \033[32m" . PHP_EOL;
+
+  echo "\033[32m--------------------------------------------\033[0m" . PHP_EOL;
+  echo " " .  implode(PHP_EOL . " ", array_keys($commands));
+  echo PHP_EOL;
+  echo "\033[32m--------------------------------------------\033[0m" . PHP_EOL;
+
+  exit(1);
+}
+
+echo "\033[32m--------------------------------------------\033[0m" . PHP_EOL;
+echo "\033[32m  Create By Alireza Vahdani (alireza10up).    \033[0m" . PHP_EOL;
+echo "\033[32m--------------------------------------------\033[0m" . PHP_EOL;
+
+$className = $commands[$argv[1]];
+var_dump($className);
+$command = new $className();
+$command->handle();
