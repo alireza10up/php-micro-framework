@@ -27,6 +27,5 @@ echo "\033[32m  Create By Alireza Vahdani (alireza10up).    \033[0m" . PHP_EOL;
 echo "\033[32m--------------------------------------------\033[0m" . PHP_EOL;
 
 $className = $commands[$argv[1]];
-var_dump($className);
 $command = new $className();
 $command->handle();
