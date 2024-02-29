@@ -13,10 +13,10 @@ class Request
     public function __construct()
     {
         $this->params = $_REQUEST;
-        $this->agent = $_SERVER['HTTP_USER_AGENT'];
-        $this->method = strtolower($_SERVER['REQUEST_METHOD']);
-        $this->ip = $_SERVER['REMOTE_ADDR'];
-        $this->uri = $_SERVER['REQUEST_URI'];
+        $this->agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $this->method = strtolower($_SERVER['REQUEST_METHOD'] ?? '');
+        $this->ip = $_SERVER['REMOTE_ADDR'] ?? '';
+        $this->uri = $_SERVER['REQUEST_URI'] ?? '';
     }
 
     public function __get($name)

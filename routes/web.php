@@ -12,6 +12,6 @@ Route::get('/', function () {
     return view('layouts.index', compact('userData'));
 }, 'middleware');
 
-//Route::get('/d', [HomeController::class, 'index'], 'middleware');
-//Route::get('/e', 'HomeController@index');
-//Route::get('/f', 'Home@index');
+//Route::get('/', [HomeController::class, 'index'], 'middleware');
+//Route::get('/', 'HomeController@index');
+//Route::get('/', 'Home@index');
