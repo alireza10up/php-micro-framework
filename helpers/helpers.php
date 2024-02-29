@@ -17,13 +17,13 @@ function assets(string $route): string
     return site_url('assets/' . $route);
 }
 
-function view($name, $data = []): void
+function view($name, $data = [])
 {
     extract($data);
 
-    $name = str_replace('.', '/', $name);
+    $path = str_replace('.', '/', $name);
 
-    include_once BASE_PATH . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $name . '.php';
+    return include_once BASE_PATH . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $path . '.php';
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\HomeController;
+use App\Controllers\ExampleController;
 use App\Core\Routing\Route;
 
 Route::get('/', function () {
@@ -9,9 +9,14 @@ Route::get('/', function () {
         'family' => 'vahdani'
     ];
 
-    return view('layouts.index', compact('userData'));
-}, 'middleware');
+    view('index', compact('userData'));
+}, [
+    App\Middleware\ExampleMiddleware::class,
+    function () {
+        echo '</br>' . 'Example Middleware Closure / Callback' . '</br>';
+    }
+]);
 
-//Route::get('/', [HomeController::class, 'index'], 'middleware');
-//Route::get('/', 'HomeController@index');
-//Route::get('/', 'Home@index');
+// Route::get('/', [ExampleController::class, 'index'], [\App\Middleware\ExampleMiddleware::class]);
+// Route::get('/', 'ExampleController@index');
+// Route::get('/', fn() => echo 'foo');

@@ -36,8 +36,29 @@ class Router
     {
         # uri not exists 404
         if (is_null($this->current_route)) $this->dispatch404();
+        # dispatching middleware
+        if (!is_null($this->current_route['middlewares'])) $this->dispatchMiddlewares($this->current_route['middlewares']);
         # dispatching
         $this->dispatch($this->current_route);
+    }
+
+    private function dispatchMiddlewares($middlewares): void
+    {
+        foreach ($middlewares as $middleware) {
+            # middleware : null
+            if (empty($middleware)) return;
+            # middleware : closure
+            if (is_callable($middleware)) {
+                $middleware();
+                continue;
+            }
+            # check middleware exist
+            if (!class_exists($middleware)) throw new \Exception('Middleware ' . $middleware . ' Not Found !');
+            # check method handle exist
+            if (!method_exists($middleware, 'handle')) throw new \Exception('Method ' . 'handle' . ' Not Exits In Class ' . $middleware);
+            # execute middleware
+            (new $middleware)->handle();
+        }
     }
 
     private function dispatch($route): void
