@@ -22,7 +22,7 @@ class Router
     private function findRoute(Request $request): array|null
     {
         foreach ($this->routes as $route) {
-            if ($request->uri() == $route['uri']) {
+            if ($route = $this->routeRegexMached($route)) {
                 if (in_array($request->method(), $route['methods'])) {
                     return $route;
                 }
@@ -42,6 +42,19 @@ class Router
         $this->dispatch($this->current_route);
     }
 
+    private function routeRegexMached($route): bool|array
+    {
+        $pattern = '/^' . str_replace(['/', '{', '}'], ['\/', '(?<', '>[-%\w]+)'], $route['uri']) . '$/';
+        if (preg_match($pattern, $this->request->uri(), $matches)) {
+            # append matched in route
+            foreach ($matches as $key => $value) {
+                if (!is_int($key)) $route['params'][$key] = $value;
+            }
+            return $route;
+        }
+        return false;
+    }
+
     private function dispatchMiddlewares($middlewares): void
     {
         foreach ($middlewares as $middleware) {
@@ -57,7 +70,7 @@ class Router
             # check method handle exist
             if (!method_exists($middleware, 'handle')) throw new \Exception('Method ' . 'handle' . ' Not Exits In Class ' . $middleware);
             # execute middleware
-            (new $middleware)->handle();
+            (new $middleware)->handle($this->request);
         }
     }
 
@@ -67,17 +80,20 @@ class Router
         # action : null
         if (empty($action)) return;
         # action : closure
-        if (is_callable($action)) $action();
+        if (is_callable($action)) call_user_func_array($action, array_merge([$this->request], $route['params']));
         # action : controller@method => [controller , method]
-        if (is_string($action) && str_contains($action, '@')) $action = explode('@', $action);
+        if (is_string($action) && str_contains($action, '@')) {
+            $action = explode('@', $action);
+            $class_name = self::BASE_CONTROLLER . $action[0];
+        }
         # action : [controller , method]
         if (is_array($action)) {
-            $class_name = self::BASE_CONTROLLER . $action[0];
+            $class_name = $class_name ?? $action[0];
             $method = $action[1];
             if (!class_exists($class_name)) throw new \Exception('Class ' . $class_name . ' Not Found !');
             $controller = new $class_name;
             if (!method_exists($controller, $method)) throw new \Exception('Method ' . $method . ' Not Exits In Class ' . $class_name);
-            $controller->{$method}();
+            call_user_func_array([$controller, $method], array_merge([$this->request], $route['params']));
         }
     }
 

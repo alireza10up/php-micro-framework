@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use JetBrains\PhpStorm\NoReturn;
+
 class Request
 {
     private array $params;
@@ -59,7 +61,7 @@ class Request
         return isset($this->params[$key]);
     }
 
-    public function redirect($route)
+    #[NoReturn] public function redirect($route): void
     {
         header('location:' . site_url($route));
         die();
