@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Middleware;
+namespace App\Middlewares;
 
 use App\Core\Request;
-use App\Middleware\Contract\MiddlewareInterface;
+use App\Middlewares\Contract\MiddlewareInterface;
 
 class ExampleMiddleware implements MiddlewareInterface
 {

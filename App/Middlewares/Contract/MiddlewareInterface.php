@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Middleware\Contract;
+namespace App\Middlewares\Contract;
 use App\Core\Request;
 
 interface MiddlewareInterface

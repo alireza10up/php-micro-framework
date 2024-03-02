@@ -15,7 +15,7 @@ Route::get('/example/{id}', function () {
 
     view('index', compact('userData'));
 }, [
-    App\Middleware\ExampleMiddleware::class,
+    App\Middlewares\ExampleMiddleware::class,
     function () {
         echo '</br>' . 'Example Middleware Closure / Callback' . '</br>';
     }
@@ -26,7 +26,7 @@ Route::get('/example/{slug}/comments/{id}', [ExampleController::class, 'index'])
 
 Route::get('/', function (\App\Core\Request $request) {
     echo 'im in /';
-}, [App\Middleware\ExampleMiddleware::class]);
+}, [App\Middlewares\ExampleMiddleware::class]);
 
 // Route::get('/', [ExampleController::class, 'index'], [\App\Middleware\ExampleMiddleware::class]);
 // Route::get('/', 'ExampleController@index');
