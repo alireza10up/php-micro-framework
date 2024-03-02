@@ -80,7 +80,7 @@ class Router
         # action : null
         if (empty($action)) return;
         # action : closure
-        if (is_callable($action)) call_user_func_array($action, array_merge([$this->request], $route['params']));
+        if (is_callable($action)) call_user_func_array($action, array_merge([$this->request], $route['params'] ?? []));
         # action : controller@method => [controller , method]
         if (is_string($action) && str_contains($action, '@')) {
             $action = explode('@', $action);
@@ -93,7 +93,7 @@ class Router
             if (!class_exists($class_name)) throw new \Exception('Class ' . $class_name . ' Not Found !');
             $controller = new $class_name;
             if (!method_exists($controller, $method)) throw new \Exception('Method ' . $method . ' Not Exits In Class ' . $class_name);
-            call_user_func_array([$controller, $method], array_merge([$this->request], $route['params']));
+            call_user_func_array([$controller, $method], array_merge([$this->request], $route['params'] ?? []));
         }
     }
 

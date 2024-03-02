@@ -24,7 +24,7 @@ Route::get('/example/{id}', function () {
 Route::get('/example/{slug}/oneParam', [ExampleController::class, 'oneParam']);
 Route::get('/example/{slug}/comments/{id}', [ExampleController::class, 'index']);
 
-Route::get('/', function () {
+Route::get('/', function (\App\Core\Request $request) {
     echo 'im in /';
 }, [App\Middleware\ExampleMiddleware::class]);
 
