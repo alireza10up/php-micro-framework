@@ -2,7 +2,7 @@
 
 namespace App\Core\Routing;
 
-use App\Core\Request;
+use App\Core\Http\Request;
 use JetBrains\PhpStorm\NoReturn;
 
 class Router

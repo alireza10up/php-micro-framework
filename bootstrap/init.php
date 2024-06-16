@@ -13,7 +13,7 @@ if ($_ENV['DEBUG'] ?? false) {
     error_reporting(E_ALL);
 }
 # init Objects
-$request = new App\Core\Request();
+$request = new App\Core\Http\Request();
 # helpers func
 include BASE_PATH . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'helpers.php';
 # routing system
