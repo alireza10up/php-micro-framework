@@ -28,6 +28,11 @@ Route::get('/', function (\App\Core\Http\Request $request) {
     echo 'im in /';
 }, [App\Middlewares\ExampleMiddleware::class]);
 
+
+Route::get('/home', function (\App\Core\Http\Request $request) {
+    echo 'im in /';
+}, [App\Middlewares\ExampleMiddleware::class]);
+
 // Route::get('/', [ExampleController::class, 'index'], [\App\Middleware\ExampleMiddleware::class]);
 // Route::get('/', 'ExampleController@index');
 // Route::get('/', fn() => echo 'foo');

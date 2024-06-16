@@ -15,6 +15,6 @@ readonly class Serve
 
     public function handle(): void
     {
-        exec("php -S {$this->host}:{$this->port} -t .");
+        exec("php -S {$this->host}:{$this->port} -t ./public");
     }
 }
