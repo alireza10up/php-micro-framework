@@ -2,7 +2,7 @@
 
 namespace App\Core\Routing;
 
-class Route
+final class Route
 {
     public static array $routes = [];
     private static array $verbs = ['get', 'post', 'patch', 'put', 'delete', 'option'];
