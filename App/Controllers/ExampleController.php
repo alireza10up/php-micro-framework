@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Core\Request;
+use App\Controllers\Contracts\AbstractBaseController;
+use App\Core\Http\Request;
 
-class ExampleController
+class ExampleController extends AbstractBaseController
 {
     public function index(Request $request, $slug, $id)
     {
