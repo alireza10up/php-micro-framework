@@ -3,7 +3,7 @@
 use App\Controllers\ExampleController;
 use App\Core\Routing\Route;
 
-Route::get('/test/{id}', function (\App\Core\Request $request) {
+Route::get('/test/{id}', function (\App\Core\Http\Request $request) {
     dd($request);
 });
 
@@ -24,7 +24,12 @@ Route::get('/example/{id}', function () {
 Route::get('/example/{slug}/oneParam', [ExampleController::class, 'oneParam']);
 Route::get('/example/{slug}/comments/{id}', [ExampleController::class, 'index']);
 
-Route::get('/', function (\App\Core\Request $request) {
+Route::get('/', function (\App\Core\Http\Request $request) {
+    echo 'im in /';
+}, [App\Middlewares\ExampleMiddleware::class]);
+
+
+Route::get('/home', function (\App\Core\Http\Request $request) {
     echo 'im in /';
 }, [App\Middlewares\ExampleMiddleware::class]);
 
