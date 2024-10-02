@@ -6,7 +6,14 @@ namespace App\Console;
 class Console
 {
     private array $commands = [
-        'serve' => 'App\Console\Commands\Serve',
+        'serve' => [
+            'class' => 'App\Console\Commands\Serve',
+            'description' => 'Starts the server.'
+        ],
+        'routes' => [
+            'class' => 'App\Console\Commands\RouteList',
+            'description' => 'Shows all routes.'
+        ],
     ];
 
     private array $colors = [
@@ -29,12 +36,17 @@ class Console
 
             $this->draw('Command Available :', 'yellow');
 
-            $this->draw(implode(PHP_EOL . " ", array_keys($this->commands)), 'cyan', true);
+
+                foreach ($this->commands as $command => $details) {
+                    $description = $details['description'] ?? 'No description available';
+                    $this->draw($command, 'cyan', false);
+                    $this->draw(" ".$description, 'white', false);
+                }
 
             exit(1);
         }
-
-        $className = $this->commands[$argv[1]];
+        $commandDetails = $this->commands[$argv[1]];
+        $className = $commandDetails['class'];
         $command = new $className();
         $this->draw($command->handle(), 'blue', true);
     }
